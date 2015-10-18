@@ -22,7 +22,7 @@ std::unique_ptr<DomainElement> SimpleDomain::elementForIndex(int index) const {
 }
 
 std::string SimpleDomain::toString() const {
-  //TODO
- return "";
-  }
+  // TODO
+  return "";
+}
 }

@@ -25,7 +25,7 @@ class Domain {
   virtual int indexOfElement(const DomainElement& domain_element) const;
 
   int int indexOfElement(std::unique_ptr<DomainElement> domain_element) const {
-     return indexOfElement(*domain_element);
+    return indexOfElement(*domain_element);
   }
 
   virtual std::unique_ptr<DomainElement> elementForIndex(int index) const;

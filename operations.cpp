@@ -29,8 +29,8 @@ static std::unique_ptr<FuzzySet> Operations::unaryOperation(
 }
 
 static std::unique_ptr<FuzzySet> Operations::binaryOperation(
-    std::unique_ptr<FuzzySet> fuzzy_set_a, std::unique_ptr<FuzzySet> fuzzy_set_b,
-    std::unique_ptr<BinaryFunction>) {
+    std::unique_ptr<FuzzySet> fuzzy_set_a,
+    std::unique_ptr<FuzzySet> fuzzy_set_b, std::unique_ptr<BinaryFunction>) {
   // TODO
   return nullptr;
 }

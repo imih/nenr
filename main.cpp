@@ -22,8 +22,7 @@ void domain_main() {
   printf("%s\n", d3->elementForIndex(0)->toString().c_str());
   printf("%s\n", d3->elementForIndex(5)->toString().c_str());
   printf("%s\n", d3->elementForIndex(14)->toString().c_str());
-  printf("%d\n",
-         d3->indexOfElement(*DomainElement::of({4, 1})));
+  printf("%d\n", d3->indexOfElement(*DomainElement::of({4, 1})));
 }
 
 void fuzzy_set_main() {
@@ -37,12 +36,11 @@ void fuzzy_set_main() {
   printf("Set1: %s\n", s1->toString().c_str());
 
   std::unique_ptr<Domain> d2 = Domain::intRange(-5, 6);
-  std::unique_ptr<FuzzySet> s2(new CalculatedFuzzySet(d2,
-                                                      StandardFuzzySets::lambda_function(d2->indexOfElement(DomainElement::of(4)),
-                                                                                         d2->indexOfElement(DomainElement::of(0)),
-                                                                                         d2->indexOfElement(DomainElement::of(4))
-                                                      )
-  ));
+  std::unique_ptr<FuzzySet> s2(new CalculatedFuzzySet(
+      d2, StandardFuzzySets::lambda_function(
+              d2->indexOfElement(DomainElement::of(4)),
+              d2->indexOfElement(DomainElement::of(0)),
+              d2->indexOfElement(DomainElement::of(4)))));
   printf("Set2: %s\n", s2->toString().c_str());
 }
 
@@ -56,16 +54,21 @@ void operations_main() {
   s1->set(DomainElement::of(4), 0.2);
   printf("Set1: %s\n", s1->toString().c_str());
 
-  std::unique_ptr<FuzzySet> nots1 = Operations::unaryOperation(s1, Operations::zadeh_not());
+  std::unique_ptr<FuzzySet> nots1 =
+      Operations::unaryOperation(s1, Operations::zadeh_not());
   printf("Not Set1: %s\n", nots1->toString().c_str());
 
-  std::unique_ptr<FuzzySet> un = Operations::binaryOperation(s1, nots1, Operations::zadeh_or());
+  std::unique_ptr<FuzzySet> un =
+      Operations::binaryOperation(s1, nots1, Operations::zadeh_or());
   printf("Set1 U ~Set2: %s\n", un->toString().c_str());
 
-  std::unique_ptr<FuzzySet> hinters = Operations::binaryOperation(s1, nots1, Operations::hamacher_tnorm(1.0));
+  std::unique_ptr<FuzzySet> hinters =
+      Operations::binaryOperation(s1, nots1, Operations::hamacher_tnorm(1.0));
 
-  printf("Set1 intersection with notSet1 using parameterised Hamacher T norm with parameter 1.0: %s\n",
-         hinters->toString());
+  printf(
+      "Set1 intersection with notSet1 using parameterised Hamacher T norm with "
+      "parameter 1.0: %s\n",
+      hinters->toString());
 }
 
 int main() {

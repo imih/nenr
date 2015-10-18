@@ -26,15 +26,14 @@ class MutableFuzzySet : FuzzySet {
     calculated_values_[index] = val;
   }
 
-    void set(std::unique_ptr<DomainElement> domain_element, double val) {
-        set(*domain_element, val);
-    }
+  void set(std::unique_ptr<DomainElement> domain_element, double val) {
+    set(*domain_element, val);
+  }
 
-    std::string toString() override {
-        //TODO
-        return "";
-    }
-
+  std::string toString() override {
+    // TODO
+    return "";
+  }
 
  private:
   std::unique_ptr<Domain> domain_;

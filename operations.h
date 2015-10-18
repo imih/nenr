@@ -41,8 +41,9 @@ class HamacherTNorm : BinaryFunction {
   double valueAt(double x, double y) const override {
     return x * y / (p_ + (1 - p_) * (x + y - x * y));
   }
-private:
-    double p_;
+
+ private:
+  double p_;
 };
 
 class HamacherSNorm : BinaryFunction {
@@ -51,18 +52,21 @@ class HamacherSNorm : BinaryFunction {
   double valueAt(double x, double y) const override {
     return (x + y - (2 - p_) * x * y) / (1 - (1 - p_) * x * y);
   }
-private:
-    double p_;
+
+ private:
+  double p_;
 };
 
 class Operations {
  public:
   static std::unique_ptr<FuzzySet> unaryOperation(
-          std::unique_ptr<FuzzySet> fuzzy_set, std::unique_ptr<UnaryFunction> unary_function);
+      std::unique_ptr<FuzzySet> fuzzy_set,
+      std::unique_ptr<UnaryFunction> unary_function);
 
   static std::unique_ptr<FuzzySet> binaryOperation(
-          std::unique_ptr<FuzzySet> fuzzy_set_a, std::unique_ptr<FuzzySet> fuzzy_set_b,
-          std::unique_ptr<BinaryFunction> binary_function);
+      std::unique_ptr<FuzzySet> fuzzy_set_a,
+      std::unique_ptr<FuzzySet> fuzzy_set_b,
+      std::unique_ptr<BinaryFunction> binary_function);
 
   static std::unique_ptr<UnaryFunction> zadeh_not() {
     return std::unique_ptr<UnaryFunction>(new ZadehNot());

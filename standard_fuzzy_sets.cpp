@@ -1,6 +1,7 @@
 #include "standard_fuzzy_sets.h"
 
 namespace fuzzy {
+
 double LFunction::valueAt(int x) {
   if (x < alfa_) {
     return 1;

@@ -7,7 +7,6 @@ namespace fuzzy {
 class IntUnaryFunction {
  public:
   IntUnaryFunction() = default;
-  virtual ~IntUnaryFunction() = default;
   virtual double valueAt(int) = 0;
 };
 
@@ -16,13 +15,20 @@ class GammaFunction : public IntUnaryFunction {
   GammaFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
   double valueAt(int x) override;
 
- private:
-  int alfa_, beta_;
-};
+ private: int alfa_, beta_; };
 
 class LFunction : public IntUnaryFunction {
  public:
   LFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
+  double valueAt(int x) override;
+
+ private:
+  int alfa_, beta_;
+};
+
+class GammaFunction : public IntUnaryFunction {
+ public:
+  GammaFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
   double valueAt(int x) override;
 
  private:

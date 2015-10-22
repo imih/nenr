@@ -1,6 +1,5 @@
 #pragma once
 
-<<<<<<< HEAD
 #include <memory>
 
 #include "domain.h"

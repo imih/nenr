@@ -15,20 +15,13 @@ class GammaFunction : public IntUnaryFunction {
   GammaFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
   double valueAt(int x) override;
 
- private: int alfa_, beta_; };
-
-class LFunction : public IntUnaryFunction {
- public:
-  LFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
-  double valueAt(int x) override;
-
  private:
   int alfa_, beta_;
 };
 
-class GammaFunction : public IntUnaryFunction {
+class LFunction : public IntUnaryFunction {
  public:
-  GammaFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
+  LFunction(int alfa, int beta) : alfa_(alfa), beta_(beta) {}
   double valueAt(int x) override;
 
  private:

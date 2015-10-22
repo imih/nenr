@@ -76,8 +76,8 @@ void operations_main() {
 }
 
 int main() {
-  //	domain_main();
-  // fuzzy_set_main();
+  domain_main();
+  fuzzy_set_main();
   operations_main();
   return 0;
 }

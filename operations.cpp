@@ -29,7 +29,7 @@ std::unique_ptr<FuzzySet> Operations::unaryOperation(
   MutableFuzzySet* mfs = new MutableFuzzySet(std::move(domain));
   for (int i = 0; i < kard; ++i) {
     auto element = fuzzy_set.domain().elementForIndex(i);
-    mfs->set(*element, unary_function->valueAt(fuzzy_set.getValueAt(*element)));
+    mfs->set(element, unary_function->valueAt(fuzzy_set.getValueAt(element)));
   }
   return std::unique_ptr<FuzzySet>(mfs);
 }
@@ -45,9 +45,9 @@ std::unique_ptr<FuzzySet> Operations::binaryOperation(
   MutableFuzzySet* mfs = new MutableFuzzySet(std::move(domain));
   for (int i = 0; i < kard; ++i) {
     auto element = fuzzy_set_a.domain().elementForIndex(i);
-    mfs->set(*element,
-             binary_function->valueAt(fuzzy_set_a.getValueAt(*element),
-                                      fuzzy_set_b.getValueAt(*element)));
+    mfs->set(element,
+             binary_function->valueAt(fuzzy_set_a.getValueAt(element),
+                                      fuzzy_set_b.getValueAt(element)));
   }
   return std::unique_ptr<FuzzySet>(mfs);
 }

@@ -7,12 +7,11 @@
 #include "simple_domain.h"
 
 namespace fuzzy {
-std::unique_ptr<Domain> Domain::intRange(int first, int last) {
-  return std::unique_ptr<Domain>(new SimpleDomain(first, last));
+Domain Domain::intRange(int first, int last) {
+  return SimpleDomain(first, last);
 }
 
-std::unique_ptr<Domain> Domain::combine(const Domain& domain1,
-                                        const Domain& domain2) {
+Domain Domain::combine(const Domain& domain1, const Domain& domain2) {
   std::vector<int> combined_first;
   combined_first.assign(domain1.first().begin(), domain1.first().end());
   combined_first.insert(combined_first.end(), domain2.first().begin(),
@@ -23,8 +22,7 @@ std::unique_ptr<Domain> Domain::combine(const Domain& domain1,
   combined_last.insert(combined_last.end(), domain2.last().begin(),
                        domain2.last().end());
 
-  return std::unique_ptr<Domain>(
-      new Domain(DomainElement(combined_first), DomainElement(combined_last)));
+  return Domain(DomainElement(combined_first), DomainElement(combined_last));
 }
 
 int Domain::getCardinality() const {
@@ -37,9 +35,9 @@ int Domain::getCardinality() const {
   return card;
 }
 
-std::unique_ptr<Domain> Domain::getComponent(int index) {
-  return std::unique_ptr<Domain>(new SimpleDomain(
-      first_.getComponentValue(index), last_.getComponentValue(index)));
+Domain Domain::getComponent(int index) const {
+  return SimpleDomain(first_.getComponentValue(index),
+                      last_.getComponentValue(index));
 }
 
 int Domain::getNumberOfComponents() const {
@@ -62,7 +60,7 @@ int Domain::indexOfElement(const DomainElement& domain_element) const {
   return index;
 }
 
-std::unique_ptr<DomainElement> Domain::elementForIndex(int index) const {
+DomainElement Domain::elementForIndex(int index) const {
   int n = first_.getNumberOfComponents();
   int cord = 1;
   std::vector<int> indices;
@@ -76,17 +74,16 @@ std::unique_ptr<DomainElement> Domain::elementForIndex(int index) const {
   for (int i = 0; i < n; ++i) {
     indices[i] += first_.getComponentValue(i);
   }
-  return std::unique_ptr<DomainElement>(new DomainElement(indices));
+  return DomainElement(indices);
 }
 
-std::string Domain::toString() const {
-  std::ostringstream oss;
-  int n = getCardinality();
+std::ostream& operator<<(std::ostream& oss, const Domain& domain) {
+  int n = domain.getCardinality();
   for (int i = 0; i < n; ++i) {
-    oss << "Element domene: " << elementForIndex(i)->toString() << std::endl;
+    oss << "Element domene: " << domain.elementForIndex(i) << std::endl;
   }
   oss << "Kardinalitet domene je: " << n << std::endl;
-  return oss.str();
+  return oss;
 }
 
 }  // namespace fuzzy

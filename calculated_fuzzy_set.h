@@ -10,12 +10,11 @@
 namespace fuzzy {
 class CalculatedFuzzySet : public FuzzySet {
  public:
-  CalculatedFuzzySet(std::unique_ptr<Domain> domain,
+  CalculatedFuzzySet(const Domain& domain,
                      std::unique_ptr<IntUnaryFunction> int_unary_function)
-      : FuzzySet(std::move(domain)),
-        int_unary_function_(std::move(int_unary_function)) {}
+      : FuzzySet(domain), int_unary_function_(std::move(int_unary_function)) {}
 
-  ~CalculatedFuzzySet();
+  virtual ~CalculatedFuzzySet() = default;
 
   double getValueAt(const DomainElement& domain_element) const override {
     int index = domain().indexOfElement(domain_element);

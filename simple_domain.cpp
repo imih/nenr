@@ -3,9 +3,9 @@
 #include <cassert>
 
 namespace fuzzy {
-std::unique_ptr<Domain> SimpleDomain::getComponent(int index) {
+Domain SimpleDomain::getComponent(int index) const {
   assert(index == 0);
-  return std::unique_ptr<Domain>(new SimpleDomain(first_val_, last_val_));
+  return SimpleDomain(first_val_, last_val_);
 }
 
 int SimpleDomain::indexOfElement(const DomainElement& domain_element) const {
@@ -16,7 +16,7 @@ int SimpleDomain::indexOfElement(const DomainElement& domain_element) const {
   return el_val - first_val_;
 }
 
-std::unique_ptr<DomainElement> SimpleDomain::elementForIndex(int index) const {
+DomainElement SimpleDomain::elementForIndex(int index) const {
   assert(index < last_val_ - first_val_);
   return DomainElement::of({first_val_ + index});
 }

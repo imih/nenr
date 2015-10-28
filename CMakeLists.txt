@@ -17,6 +17,9 @@ set(SOURCE_FILES
   simple_domain.cpp
   simple_domain.h
   standard_fuzzy_sets.h
-  standard_fuzzy_sets.cpp)
+  standard_fuzzy_sets.cpp
+  relations.h
+  relations.cpp
+  )
 
 add_executable(nenr ${SOURCE_FILES})

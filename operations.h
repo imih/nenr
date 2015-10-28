@@ -85,5 +85,8 @@ class Operations {
   static std::unique_ptr<BinaryFunction> hamacher_snorm(double p) {
     return std::unique_ptr<BinaryFunction>(new HamacherSNorm(p));
   }
+
+ private:
+  Operations() = default;
 };
 }  // namespace fuzzy

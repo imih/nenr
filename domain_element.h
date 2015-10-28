@@ -1,8 +1,8 @@
 #pragma once
 
-#include <memory>
 #include <string>
 #include <vector>
+#include <sstream>
 
 namespace fuzzy {
 class DomainElement : public std::vector<int> {
@@ -12,7 +12,7 @@ class DomainElement : public std::vector<int> {
   DomainElement(const std::vector<int>& values) : vector<int>(values) {}
 
   DomainElement(const std::initializer_list<int> values)
-      : vector<int>(values) {}
+      : std::vector<int>(values) {}
 
   DomainElement(int value) { push_back(value); }
 
@@ -22,11 +22,15 @@ class DomainElement : public std::vector<int> {
 
   int getComponentValue(int index) const;
 
-  std::string toString() const;
-
-  static std::unique_ptr<DomainElement> of(const std::vector<int>& values);
-  static std::unique_ptr<DomainElement> of(
-      const std::initializer_list<int> values);
-  static std::unique_ptr<DomainElement> of(int value);
+  static DomainElement of(const std::vector<int>& values);
+  static DomainElement of(const std::initializer_list<int> values);
+  static DomainElement of(int value);
+  static DomainElement of(int value1, int value2) {
+    return of({value1, value2});
+  }
 };
+
+std::ostream& operator<<(std::ostream& oss,
+                         const DomainElement& domain_element);
+
 }  // namespace fuzzy

@@ -8,15 +8,22 @@
 namespace fuzzy {
 class FuzzySet {
  public:
-  FuzzySet(std::unique_ptr<Domain> domain) : domain_(std::move(domain)) {}
+  FuzzySet(const Domain& domain) : domain_(domain) {}
+  FuzzySet(const FuzzySet& fuzzy_set) : FuzzySet(fuzzy_set.domain()) {}
+  virtual ~FuzzySet() = default;
 
-  const Domain& domain() const { return *domain_; }
+  const Domain& domain() const { return domain_; }
 
-  virtual double getValueAt(const DomainElement& domain_element) const = 0;
+  virtual double getValueAt(const DomainElement& domain_element) const {
+    return 0;
+  }
 
   std::string toString();
 
  private:
-  std::unique_ptr<Domain> domain_;
+  Domain domain_;
 };
+
+std::ostream& operator<<(std::ostream& oss, const FuzzySet& fuzzy_set);
+
 }  // namespace fuzzy

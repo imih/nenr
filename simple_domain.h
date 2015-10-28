@@ -15,13 +15,13 @@ class SimpleDomain : public Domain {
 
   int getCardinality() const override { return last_val_ - first_val_; }
 
-  std::unique_ptr<Domain> getComponent(int index) override;
+  Domain getComponent(int index) const override;
 
   int getNumberOfComponents() const override { return 1; }
 
   int indexOfElement(const DomainElement& domain_element) const override;
 
-  std::unique_ptr<DomainElement> elementForIndex(int index) const override;
+  DomainElement elementForIndex(int index) const override;
 
  private:
   int first_val_, last_val_;

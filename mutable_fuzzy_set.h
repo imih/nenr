@@ -2,6 +2,7 @@
 
 #include <string>
 #include <sstream>
+#include <memory>
 
 #include "domain.h"
 #include "domain_element.h"
@@ -10,10 +11,17 @@
 namespace fuzzy {
 class MutableFuzzySet : public FuzzySet {
  public:
-  MutableFuzzySet(std::unique_ptr<Domain> domainD)
-      : FuzzySet(std::move(domainD)) {
+  MutableFuzzySet(const Domain& domainD) : FuzzySet(domainD) {
     calculated_values_.assign(domain().getCardinality(), 0);
   }
+
+  MutableFuzzySet(std::unique_ptr<Domain> domain_ptr)
+      : FuzzySet(*domain_ptr), domain_ptr_(std::move(domain_ptr)) {
+    calculated_values_.assign(domain().getCardinality(), 0);
+  }
+
+  MutableFuzzySet(const MutableFuzzySet& mutable_fuzzy_set)
+      : MutableFuzzySet(mutable_fuzzy_set.domain()) {}
 
   virtual ~MutableFuzzySet() = default;
 
@@ -28,6 +36,7 @@ class MutableFuzzySet : public FuzzySet {
   }
 
  private:
+  std::unique_ptr<Domain> domain_ptr_;
   std::vector<double> calculated_values_;
 };
 }  // namespace fuzzy

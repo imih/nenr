@@ -10,22 +10,20 @@ class Domain {
   Domain(DomainElement first, DomainElement last)
       : first_(first), last_(last) {}
 
-  static std::unique_ptr<Domain> intRange(int first, int last);
+  static Domain intRange(int first, int last);
 
-  static std::unique_ptr<Domain> combine(const Domain& domain_first,
-                                         const Domain& domain_second);
+  static Domain combine(const Domain& domain_first,
+                        const Domain& domain_second);
 
   virtual int getCardinality() const;
 
-  virtual std::unique_ptr<Domain> getComponent(int index);
+  virtual Domain getComponent(int index) const;
 
   virtual int getNumberOfComponents() const;
 
   virtual int indexOfElement(const DomainElement& domain_element) const;
 
-  virtual std::unique_ptr<DomainElement> elementForIndex(int index) const;
-
-  virtual std::string toString() const;
+  virtual DomainElement elementForIndex(int index) const;
 
   const DomainElement& first() const { return first_; }
   const DomainElement& last() const { return last_; }
@@ -36,4 +34,7 @@ class Domain {
   DomainElement first_;
   DomainElement last_;
 };
-}
+
+std::ostream& operator<<(std::ostream& oss, const Domain& domain);
+
+} /* namespace fuzzy */

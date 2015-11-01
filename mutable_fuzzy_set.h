@@ -15,15 +15,10 @@ class MutableFuzzySet : public FuzzySet {
     calculated_values_.assign(domain().getCardinality(), 0);
   }
 
-  MutableFuzzySet(std::unique_ptr<Domain> domain_ptr)
-      : FuzzySet(*domain_ptr), domain_ptr_(std::move(domain_ptr)) {
-    calculated_values_.assign(domain().getCardinality(), 0);
-  }
-
   MutableFuzzySet(const MutableFuzzySet& mutable_fuzzy_set)
       : MutableFuzzySet(mutable_fuzzy_set.domain()) {}
 
-  virtual ~MutableFuzzySet() = default;
+  ~MutableFuzzySet() = default;
 
   double getValueAt(const DomainElement& domain_element) const override {
     int index = domain().indexOfElement(domain_element);
@@ -35,8 +30,7 @@ class MutableFuzzySet : public FuzzySet {
     calculated_values_[index] = val;
   }
 
- private:
-  std::unique_ptr<Domain> domain_ptr_;
+ protected:
   std::vector<double> calculated_values_;
 };
 }  // namespace fuzzy

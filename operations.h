@@ -1,8 +1,6 @@
 #pragma once
 
-#include <memory>
-
-#include "fuzzy_set.h"
+#include "mutable_fuzzy_set.h"
 
 namespace fuzzy {
 class BinaryFunction {
@@ -59,32 +57,12 @@ class HamacherSNorm : public BinaryFunction {
 
 class Operations {
  public:
-  static std::unique_ptr<FuzzySet> unaryOperation(
-      const FuzzySet& fuzzy_set, std::unique_ptr<UnaryFunction> unary_function);
+  static MutableFuzzySet unaryOperation(
+      const FuzzySet& fuzzy_set, const UnaryFunction& unary_function);
 
-  static std::unique_ptr<FuzzySet> binaryOperation(
+  static MutableFuzzySet binaryOperation(
       const FuzzySet& fuzzy_set_a, const FuzzySet& fuzzy_set_b,
-      std::unique_ptr<BinaryFunction> binary_function);
-
-  static std::unique_ptr<UnaryFunction> zadeh_not() {
-    return std::unique_ptr<UnaryFunction>(new ZadehNot());
-  }
-
-  static std::unique_ptr<BinaryFunction> zadeh_and() {
-    return std::unique_ptr<BinaryFunction>(new ZadehAnd());
-  }
-
-  static std::unique_ptr<BinaryFunction> zadeh_or() {
-    return std::unique_ptr<BinaryFunction>(new ZadehOr());
-  }
-
-  static std::unique_ptr<BinaryFunction> hamacher_tnorm(double p) {
-    return std::unique_ptr<BinaryFunction>(new HamacherTNorm(p));
-  }
-
-  static std::unique_ptr<BinaryFunction> hamacher_snorm(double p) {
-    return std::unique_ptr<BinaryFunction>(new HamacherSNorm(p));
-  }
+      const BinaryFunction& binary_function);
 
  private:
   Operations() = default;

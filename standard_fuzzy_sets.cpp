@@ -2,7 +2,7 @@
 
 namespace fuzzy {
 
-double LFunction::valueAt(int x) {
+double LFunction::valueAt(int x) const {
   if (x < alfa_) {
     return 1;
   } else if (x >= beta_) {
@@ -11,7 +11,7 @@ double LFunction::valueAt(int x) {
   return (beta_ - x) / ((double)beta_ - alfa_);
 }
 
-double GammaFunction::valueAt(int x) {
+double GammaFunction::valueAt(int x) const {
   if (x < alfa_) {
     return 0;
   }
@@ -21,7 +21,7 @@ double GammaFunction::valueAt(int x) {
   return (x - alfa_) / ((double)beta_ - alfa_);
 }
 
-double LambdaFunction::valueAt(int x) {
+double LambdaFunction::valueAt(int x) const {
   if (x < alfa_) {
     return 0;
   }

@@ -2,19 +2,19 @@
 
 #include <memory>
 
-#include "fuzzy_set.h"
+#include "binary_relation.h"
 
 namespace fuzzy {
 
 class Relations {
  public:
-  static bool isSymmetric(const FuzzySet& fuzzy_set);
-  static bool isReflexive(const FuzzySet& fuzzy_set);
-  static bool isMaxMinTransitive(const FuzzySet& fuzzy_set);
-  static FuzzySet compositionOfBinaryRelations(const FuzzySet& fuzzy_set_a,
-                                               const FuzzySet& fuzzy_set_b);
-  static bool isFuzzyEquivalence(const FuzzySet& fuzzy_set);
-  static bool isUtimesURelations(const FuzzySet& fuzzy_set);
+  static bool isSymmetric(const BinaryRelation& binary_relation);
+  static bool isReflexive(const BinaryRelation& binary_relation);
+  static bool isMaxMinTransitive(const BinaryRelation& binary_relation);
+  static BinaryRelation compositionOfBinaryRelations(const BinaryRelation& binary_relation_a,
+                                               const BinaryRelation& binary_relation_b);
+  static bool isFuzzyEquivalence(const BinaryRelation& binary_relation);
+  static bool isUtimesURelations(const BinaryRelation& binary_relation);
 
  private:
   Relations() = default;

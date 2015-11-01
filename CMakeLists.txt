@@ -18,6 +18,8 @@ set(SOURCE_FILES
   simple_domain.h
   standard_fuzzy_sets.h
   standard_fuzzy_sets.cpp
+  binary_relation.h
+  binary_relation.cpp
   relations.h
   relations.cpp
   )

@@ -57,12 +57,12 @@ class HamacherSNorm : public BinaryFunction {
 
 class Operations {
  public:
-  static MutableFuzzySet unaryOperation(
-      const FuzzySet& fuzzy_set, const UnaryFunction& unary_function);
+  static MutableFuzzySet unaryOperation(const FuzzySet& fuzzy_set,
+                                        const UnaryFunction& unary_function);
 
-  static MutableFuzzySet binaryOperation(
-      const FuzzySet& fuzzy_set_a, const FuzzySet& fuzzy_set_b,
-      const BinaryFunction& binary_function);
+  static MutableFuzzySet binaryOperation(const FuzzySet& fuzzy_set_a,
+                                         const FuzzySet& fuzzy_set_b,
+                                         const BinaryFunction& binary_function);
 
  private:
   Operations() = default;

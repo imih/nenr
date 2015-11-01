@@ -24,7 +24,7 @@ MutableFuzzySet Operations::unaryOperation(
     const FuzzySet& fuzzy_set, const UnaryFunction& unary_function) {
   Domain domain(fuzzy_set.domain().first(), fuzzy_set.domain().last());
   int kard = domain.getCardinality();
-MutableFuzzySet mfs = MutableFuzzySet(domain);
+  MutableFuzzySet mfs = MutableFuzzySet(domain);
   for (int i = 0; i < kard; ++i) {
     auto element = fuzzy_set.domain().elementForIndex(i);
     mfs.set(element, unary_function.valueAt(fuzzy_set.getValueAt(element)));
@@ -42,9 +42,8 @@ MutableFuzzySet Operations::binaryOperation(
   MutableFuzzySet mfs = MutableFuzzySet(std::move(domain));
   for (int i = 0; i < kard; ++i) {
     auto element = fuzzy_set_a.domain().elementForIndex(i);
-    mfs.set(element,
-             binary_function.valueAt(fuzzy_set_a.getValueAt(element),
-                                      fuzzy_set_b.getValueAt(element)));
+    mfs.set(element, binary_function.valueAt(fuzzy_set_a.getValueAt(element),
+                                             fuzzy_set_b.getValueAt(element)));
   }
   return mfs;
 }
